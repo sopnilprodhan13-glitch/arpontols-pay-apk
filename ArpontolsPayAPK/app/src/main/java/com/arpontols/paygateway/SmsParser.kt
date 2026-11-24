@@ -11,8 +11,8 @@ data class ParsedPaymentSms(
 )
 
 object SmsParser {
-    private val TRX_REGEX = Regex("(?:TrxID|TxnId|TxID|Trx\s*ID)\s*[:\-]?\s*([A-Za-z0-9]{8,14})", RegexOption.IGNORE_CASE)
-    private val AMT_REGEX = Regex("(?:Tk|BDT)\s*([0-9,]+(?:\.\d{1,2})?)", RegexOption.IGNORE_CASE)
+    private val TRX_REGEX = Regex("""(?:TrxID|TxnId|TxID|Trx\s*ID)\s*[:\-]?\s*([A-Za-z0-9]{8,14})""", RegexOption.IGNORE_CASE)
+    private val AMT_REGEX = Regex("""(?:Tk|BDT)\s*([0-9,]+(?:\.\d{1,2})?)""", RegexOption.IGNORE_CASE)
 
     fun parse(sender: String, body: String): ParsedPaymentSms? {
         val sLow = sender.lowercase(Locale.US)
